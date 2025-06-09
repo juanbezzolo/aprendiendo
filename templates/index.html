@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <title>Seguimiento de Micelio</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'styles.css' %}" />
+</head>
+<body>
+    <h1>Sistema de cultivo de hongos medicinales</h1>
+    {% if user.is_authenticated %}
+      <p>Bienvenido, {{ user.username }} | <a href="{% url 'logout' %}">Salir</a></p>
+    {% else %}
+      <p><a href="{% url 'login' %}">Iniciar sesión</a></p>
+    {% endif %}
+    <p>Lista de usuarios registrados:</p>
+    <ul>
+    {% for user in usuarios %}
+      <li>{{ user.nombre }} - {{ user.rol }}</li>
+    {% empty %}
+      <li>No hay usuarios registrados.</li>
+    {% endfor %}
+    </ul>
+    <script src="{% static 'script.js' %}"></script>
+</body>
+</html>
